@@ -16,7 +16,7 @@ function loadRecipe() {
             for (var i = 0; i < res.length; i++) {
                 var rec = res[i];
                 recipes.append(
-                    `<div class="recipe bg-light p-2 m-3" data-id="${rec._id}"><h3>${rec.title}</h3><p class="pr-3 pb-3"><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button><span class="mr-4">${rec.body}</span></p></div>`
+                    `<div class="recipe bg-light p-2 m-3 shadow-lg p-3 mb-5 bg-white rounded" data-id="${rec._id}"><h3>${rec.title}</h3><p class="pr-3 pb-3"><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button><span class="mr-4">${rec.body}</span></p></div>`
                 );
                 // recipes.append("<div><h3>" + rec.title + "</h3></div>");
             }
