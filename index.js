@@ -1,61 +1,97 @@
 $(function () {
     loadRecipe();
-    $("#recipes").on("click", ".btn-danger", handleDelete);
-    $("#recipes").on("click", ".btn-warning", handleUpdate);
+    $(document).on("click","#del", handleDelete);
+    $("#del").click(handleDelete);
+    $(document).on("click","#edit",handleUpdate);
     $("#addBtn").click(addRecipe);
     $("#updateSave").click(saveUpdate);
+    
 });
 
 function loadRecipe() {
     $.ajax({
-        url: "https://usman-recipes.herokuapp.com/api/recipes",
+        url: "https://usman-recipes.herokuapp.com/api/products",
         method: "GET",
         success: function (res) {
             var recipes = $("#recipes");
             recipes.empty();
             for (var i = 0; i < res.length; i++) {
                 var rec = res[i];
+                recipes.addClass("cent p-3 m-2 ");
                 recipes.append(
-                    `<div class="recipe bg-light p-2 m-3 shadow-lg p-3 mb-5 bg-white rounded" data-id="${rec._id}"><h3>${rec.title}</h3><p class="pr-3 pb-3"><button class="btn btn-danger btn-sm float-right">delete</button><button class="btn btn-warning btn-sm float-right">Edit</button><span class="mr-4">${rec.body}</span></p></div>`
+                    `<div id="abc" class="card deco ml-4 mb-4" style="max-width: 20rem;">
+                    <h3>${rec.name}</h3>
+                    <div class="card-body text-primary">
+                        <p class="card-text">${rec.description}</p>
+                        <div class="row pt-3 pb-2 m-2 bbb ">
+                          <div class="col-sm  hh">
+                            Price
+                          </div>
+                          <div class="col-sm bd hh">
+                            Color
+                          </div>
+                          <div class="col-sm  hh">
+                            Department
+                          </div>
+                        </div>
+                        <div class="row p-1 m-2 ">
+                            <div class="col-sm  nu">
+                            RS. ${rec.price}
+                            </div>
+                            <div class="col-sm  nu">
+                            ${rec.color}
+                            </div>
+                            <div class="col-sm  nu">
+                            ${rec.department}
+                            </div>
+                          </div>
+                    </div>
+                    <div class="ft "data-id="${rec._id}">
+                    <button id="edit"  class="btn btn-warning btn-sm float-left"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button>
+                    <button id="del"  class="btn btn-danger btn-sm float-left"><i class="fa fa-trash-o" aria-hidden="true"></i> delete</button>
+                    </div>
+                  </div>`
                 );
-                // recipes.append("<div><h3>" + rec.title + "</h3></div>");
             }
         }
 
     });
 }
-
 function handleDelete() {
+    console.log("abcd");
     var btn = $(this);
-    var parentDiv = btn.closest(".recipe");
+    var parentDiv = btn.closest(".ft");
     let id = parentDiv.attr("data-id");
-    // console.log(id);
+    console.log(id);
     $.ajax({
-        url: "https://usman-recipes.herokuapp.com/api/recipes/" + id,
+        url: "https://usman-recipes.herokuapp.com/api/products/" + id,
         method: "DELETE",
         success: function () {
             loadRecipe();
-            $("#msg").html("Recipe Deleted");
+            $("#msg").html("Product Deleted");
             $("#alert").modal("show");
         }
     });
 }
 
 function addRecipe() {
-    var title = $("#title").val();
-    var body = $("#body").val();
+    var name = $("#name").val();
+    var price = $("#price").val();
+    var color = $("#color").val();
+    var department = $("#department").val();
+    var description = $("#description").val();
     // console.log(title, body);
     $.ajax({
-        url: "https://usman-recipes.herokuapp.com/api/recipes",
+        url: "https://usman-recipes.herokuapp.com/api/products",
         method: "POST",
-        data: { title, body },
+        data: { name, price, color, department, description },
         success: function (response) {
             console.log(response);
-            $("#title").val("");
-            $("#body").val("");
+            $("#name").val("");
+            $("#price").val("");
             loadRecipe();
             $("#addModal").modal("hide");
-            $("#msg").html("Recipe Added");
+            $("#msg").html("{Product Added");
             $("#alert").modal("show");
 
         }
@@ -64,32 +100,41 @@ function addRecipe() {
 }
 
 function saveUpdate() {
+
     var id = $("#updateId").val();
-    var title = $("#updateTitle").val();
-    var body = $("#updateBody").val();
-    console.log(id, title, body);
+    console.log(id);
+    var name = $("#updateName").val();
+    var price = $("#updatePrice").val();
+    var color = $("#updateColor").val();
+    var department = $("#updateDepartment").val();
+    var description = $("#updateDescription").val();
+
     $.ajax({
-        url: "https://usman-recipes.herokuapp.com/api/recipes/" + id,
+        url: "https://usman-recipes.herokuapp.com/api/products/" + id,
         method: "PUT",
-        data: { title, body },
+        data: { name, price, color, department, description },
         success: function (res) {
             // console.log(res);
             loadRecipe();
             $("#updateModal").modal("hide");
-            $("#msg").html("Recipe Updated");
+            $("#msg").html("Product Updated");
             $("#alert").modal("show");
         }
     });
 }
 
 function handleUpdate() {
+    console.log("abccccc");
     var btn = $(this);
-    var parentDiv = btn.closest(".recipe");
+    var parentDiv = btn.closest(".ft");
     let id = parentDiv.attr("data-id");
-    $.get("https://usman-recipes.herokuapp.com/api/recipes/" + id, function (res) {
+    $.get("https://usman-recipes.herokuapp.com/api/products/" + id, function (res) {
         $("#updateId").val(res._id);
-        $("#updateTitle").val(res.title);
-        $("#updateBody").val(res.body);
+        $("#updateName").val(res.name);
+        $("#updatePrice").val(res.price);
+        $("#updateColor").val(res.color);
+        $("#updateDepartment").val(res.department);
+        $("#updateDescription").val(res.description);
         $("#updateModal").modal("show");
     });
 }

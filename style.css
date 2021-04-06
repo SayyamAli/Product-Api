@@ -1,6 +1,65 @@
 * {
-  font-family: "Slabo", serif;
+  font-family: "Libre Franklin", sans-serif;
 }
-.recipe {
-  border-left: 3px solid gray;
+.deco {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  /* backdrop-filter: blur(2px); */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-width: 20rem;
+}
+html {
+  scroll-behavior: smooth;
+}
+footer {
+  font-size: larger;
+  font-weight: bolder;
+  font-style: italic;
+  text-align: center;
+}
+.hg {
+  width: 100vw;
+  height: 76vh;
+  align-items: center;
+}
+h3 {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-top: 35px;
+  color: #ea1d24;
+  text-align: center;
+  font-weight: bolder;
+}
+p {
+  font-size: 11px;
+  color: #878787;
+  line-height: 22px;
+  text-align: center;
+}
+.bd {
+  text-align: center;
+}
+
+.hh {
+  font-size: 14px;
+  color: #757575;
+  font-weight: bolder;
+}
+.nu {
+  font-size: 11px;
+  color: #757575;
+}
+
+.bbb {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.ft {
+  padding: 0.75rem 1.25rem;
+}
+.cent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
 }
