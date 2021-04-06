@@ -11,16 +11,24 @@
 html {
   scroll-behavior: smooth;
 }
+
+.hg {
+  width: 100vw;
+  height: 76vh;
+  align-items: center;
+}
 footer {
   font-size: larger;
   font-weight: bolder;
   font-style: italic;
   text-align: center;
 }
-.hg {
-  width: 100vw;
-  height: 76vh;
-  align-items: center;
+
+p {
+  font-size: 11px;
+  color: #878787;
+  line-height: 22px;
+  text-align: center;
 }
 h3 {
   font-size: 20px;
@@ -29,12 +37,6 @@ h3 {
   color: #ea1d24;
   text-align: center;
   font-weight: bolder;
-}
-p {
-  font-size: 11px;
-  color: #878787;
-  line-height: 22px;
-  text-align: center;
 }
 .bd {
   text-align: center;
@@ -45,16 +47,15 @@ p {
   color: #757575;
   font-weight: bolder;
 }
-.nu {
-  font-size: 11px;
-  color: #757575;
-}
-
 .bbb {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 .ft {
   padding: 0.75rem 1.25rem;
+}
+.nu {
+  font-size: 11px;
+  color: #757575;
 }
 .cent {
   display: flex;
